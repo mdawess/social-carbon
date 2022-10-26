@@ -1,2 +1,2 @@
 # social-carbon
-Saving the planet with your friends
+🌳 Saving the planet with your friends
