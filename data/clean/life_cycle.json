@@ -1,0 +1,14 @@
+{
+    "Total GHGs": {
+        "Year": 1.1242064930250112e-07, 
+        "Agricultural production emissions": 0.39391579919090053, 
+        "End-of-Life food emissions": 0.08580089632959141, 
+        "Food packaging emissions": 0.0545312059836283, 
+        "Food retail emissions": 0.03994859571557207, 
+        "Land use change emissions": 0.3179720374487635, 
+        "Food processing emissions": 0.03467883917153256, 
+        "Food consumption emissions": 0.025362704828855973, 
+        "Food transport emissions": 0.04778980891050633, 
+        "total_emissions": 1.0
+    }
+}
