@@ -85,6 +85,8 @@ class FoodCalculator(CarbonCalculator):
                     emissions += self.food_footprints[ingredient] \
                         ['GHG emissions per kilogram (Poore & Nemecek, 2018)'] \
                             * ingredients[ingredient]
+                else:
+                    continue
             return emissions
         except:
             return 0
