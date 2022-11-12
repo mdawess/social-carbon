@@ -39,7 +39,7 @@ class FoodCalculator(CarbonCalculator):
                 if item in self.food_weights and item in self.food_footprints:
                     emissions += self.food_footprints[item] \
                         ['GHG emissions per kilogram (Poore & Nemecek, 2018)'] * self.food_weights[item]
-                elif item in self.food_weights and item not in self.food_footprints:
+                elif item not in self.food_weights and item in self.food_footprints:
                     emissions += self._calculate_complex_emissions(item)
             return emissions
         elif food:
