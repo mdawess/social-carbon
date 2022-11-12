@@ -39,14 +39,11 @@ class FoodCalculator(CarbonCalculator):
                 if item in self.food_weights and item in self.food_footprints:
                     emissions += self.food_footprints[item] \
                         ['GHG emissions per kilogram (Poore & Nemecek, 2018)'] * self.food_weights[item]
+                elif item in self.food_weights and item not in self.food_footprints:
+                    emissions += self._calculate_complex_emissions(item)
             return emissions
         elif food:
-            ingredients = self._get_complex_ingredients(food)
-            for ingredient in ingredients:
-                if ingredient in self.food_footprints:
-                    emissions += self.food_footprints[ingredient] \
-                        ['GHG emissions per kilogram (Poore & Nemecek, 2018)'] * ingredients[ingredient]
-            return emissions
+            return self._calculate_complex_emissions(food)
         else:
             return 0
 
@@ -72,6 +69,25 @@ class FoodCalculator(CarbonCalculator):
         weights_file = open('data/food_weights.json')
         weights = json.load(weights_file)
         return weights
+
+    def _calculate_complex_emissions(self, food: str) -> float:
+        """Calculates the emissions for a complex item such
+        as pasta or a sandwich.
+
+        Returns:
+            The emissions for the complex item.
+        """
+        try:
+            ingredients = self._get_complex_ingredients(food)
+            emissions = 0
+            for ingredient in ingredients:
+                if ingredient in self.food_footprints:
+                    emissions += self.food_footprints[ingredient] \
+                        ['GHG emissions per kilogram (Poore & Nemecek, 2018)'] \
+                            * ingredients[ingredient]
+            return emissions
+        except:
+            return 0
 
     def _get_complex_ingredients(self, food: str) -> Dict[str, float]:
         """Calculates the emissions for a complex item such
